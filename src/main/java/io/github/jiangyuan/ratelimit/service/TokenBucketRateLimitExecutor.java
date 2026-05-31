@@ -33,13 +33,20 @@ public class TokenBucketRateLimitExecutor implements RateLimitExecutor {
                 "local timestamp = tonumber(data[2]) " +
                 "if tokens == nil then " +
                 "   tokens = capacity " +
-                "end " +
-                "if timestamp == nil then " +
                 "   timestamp = now " +
+                "else " +
+                "   if timestamp == nil then " +
+                "       timestamp = now " +
+                "   end " +
+                "   local delta = now - timestamp " +
+                "   if delta > 0 and refillRate > 0 then " +
+                "       local refill = delta * refillRate " +
+                "       tokens = tokens + refill " +
+                "       if tokens > capacity then " +
+                "           tokens = capacity " +
+                "       end " +
+                "   end " +
                 "end " +
-                "local delta = math.max(0, now - timestamp) " +
-                "local refill = delta * refillRate " +
-                "tokens = math.min(capacity, tokens + refill) " +
                 "local allowed = 0 " +
                 "if tokens >= 1 then " +
                 "   tokens = tokens - 1 " +

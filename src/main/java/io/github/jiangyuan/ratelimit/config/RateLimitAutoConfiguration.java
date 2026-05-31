@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.Map;
@@ -24,6 +25,7 @@ import java.util.Map;
  */
 @AutoConfiguration
 @EnableConfigurationProperties(RateLimitProperties.class)
+@EnableAspectJAutoProxy
 @ConditionalOnProperty(prefix = "rate-limit", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class RateLimitAutoConfiguration {
 
