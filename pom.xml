@@ -6,7 +6,7 @@
 
     <groupId>io.github.jiangyuan1209</groupId>
     <artifactId>jiangyuan-ratelimit-spring-boot-starter</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
 
     <properties>
